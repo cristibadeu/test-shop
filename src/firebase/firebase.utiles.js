@@ -1,7 +1,7 @@
 import firebase from "@firebase/app-compat";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
-import { signInWithCredential } from "firebase/auth";
+//import { signInWithCredential } from "firebase/auth";
 
 const config = {
   apiKey: "AIzaSyAU8ZwKMI_OuOsXTS2DTf99BO_34J19KKU",
