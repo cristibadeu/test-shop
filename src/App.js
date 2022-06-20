@@ -5,9 +5,11 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInSignUp from './pages/sign-in-sign-up/sign-in-sign-up.component';
+import CheckoutPage from './pages/checkout/checkout.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utiles';
 import { connect } from "react-redux/es/exports";
 import { setCurrentUser } from './redux/user/user.actions';
+import { selectCurrentUser } from './redux/user/user.selectors';
 
 class App extends React.Component {
   
@@ -54,6 +56,7 @@ class App extends React.Component {
         <Routes>
           <Route path='/' element={ <HomePage /> } />
           <Route path='/shop' element={ <ShopPage /> } />
+          <Route path='/checkout' element={ <CheckoutPage /> } />
           <Route path='/signin' element={ this.props.currentUser ? <Navigate to="/" replace />: <SignInSignUp /> } />
         </Routes>
       </div>
@@ -62,8 +65,8 @@ class App extends React.Component {
   
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
+const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state) //Update with createStructuredSelector like in heder component when more selectors needed
 })
 
 const mapDispatchToProps = dispatch => ({
