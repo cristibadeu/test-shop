@@ -1,20 +1,16 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import CollectionsOverviewContainer from "../../components/collections-overview/collections-overview.container";
 import CategoryOverviewContainer from "../category/category.container";
 import { Routes, Route, useParams } from 'react-router-dom';
 import { connect } from "react-redux/es/exports";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 
-const ShopPage= (props) => {
+const ShopPage= ({ fetchCollectionsStart }) => {
   let params = useParams();  
-  const callbackFetch = useCallback(() => {
-    const { fetchCollectionsStart} = props;
-    fetchCollectionsStart();
-  },[props])
 
   useEffect(() => {
-    callbackFetch();
-  },[callbackFetch]);
+    fetchCollectionsStart();
+  },[fetchCollectionsStart]);
 
   return(
     <div className="shop-page">
